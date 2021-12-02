@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title></title>
+        <!-- Latest compiled and minified CSS -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300&family=Zen+Tokyo+Zoo&display=swap');
+
+            body {
+                margin : 0px 300px;
+                background: linear-gradient(black, cyan);
+            }
+
+
+            #title {
+                color : red;
+                font-family: 'Zen Tokyo Zoo', cursive;
+                font-size: 70px;
+            }
+
+            .bg-subtitle {
+                background: linear-gradient(black, black);
+                font-family: 'Cairo', sans-serif;
+                margin-top: 50px;
+                background-image: url(1.jpeg);
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 id = "title" align="center">TOXIC COMMENTS CLASSIFIER</h1>
+        <form action="{% url 'polls:home' %}" method="post">
+            {% csrf_token %}
+
+            <div class="p-3 mb-2 bg-subtitle text-white">Enter a comment</div>
+            <div class="form-group">
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="3" placeholder="{{ tmp }}"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-light">Process</button>
+                <button type="reset" class="btn btn-light">Refresh</button>
+            </div>
+
+            {% if toxic == 0 %}
+                <div class="alert alert-success" role="alert">
+                    This comment is not toxic
+                </div>
+            {% endif %}
+
+            {% if toxic == 1 %}
+                <div class="alert alert-danger" role="alert">
+                    This comment is toxic
+                </div>
+            {% endif %}
+        </form>
+
+        <form>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Load csv file input</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Process labeling</button>
+  </div>
+</form>
+
+        <div class="p-3 mb-2 bg-subtitle text-white">Copyright KJQ</div>
+            <div class="form-group">
+                <p>
+                    TCC Version Beta
+                </p>
+            </div>
+    </body>
+</html>
+
